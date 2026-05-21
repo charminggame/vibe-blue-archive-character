@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Fonts */
+  --font-primary: 'Outfit', 'Sarabun', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Shared Color Tokens */
+  --ba-blue: #00a3ff;
+  --ba-blue-hover: #0082cc;
+  --ba-blue-glow: rgba(0, 163, 255, 0.4);
+  --ba-orange: #ff7e00;
+  
+  /* Combat Type Colors */
+  --color-explosive: #f63e3e;
+  --color-piercing: #ffb800;
+  --color-mystic: #2196f3;
+  --color-sonic: #b800ff;
+  --color-normal: #8e9bb0;
+  
+  /* Armor Type Colors */
+  --color-light: #f63e3e;
+  --color-heavy: #ffb800;
+  --color-special: #2196f3;
+  --color-elastic: #b800ff;
+
+  /* Rarity Stars Color */
+  --color-star: #ffc107;
+
+  /* School specific colors */
+  --color-abydos: #13b3c3;
+  --color-gehenna: #c51d24;
+  --color-trinity: #dfb23b;
+  --color-millennium: #0055a5;
+  --color-hyakkiyako: #e93e7b;
+  --color-shanhaijing: #00966a;
+  --color-redwinter: #c2292f;
+  --color-valkyrie: #4f68b3;
+  --color-srt: #677582;
+  --color-arius: #6d6d7e;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Light Theme Default */
+  --bg-primary: #f4f7fc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e9eff8;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-tertiary: #94a3b8;
+  --border-color: rgba(226, 232, 240, 0.8);
+  --border-focus: rgba(0, 163, 255, 0.5);
+  --card-shadow: 0 10px 30px -10px rgba(148, 163, 184, 0.2);
+  --card-hover-shadow: 0 20px 40px -15px rgba(0, 163, 255, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-backdrop: blur(16px);
+  --hero-gradient: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+  --hero-pattern-opacity: 0.05;
+}
+
+/* Dark Theme overrides */
+[data-theme="dark"] {
+  --bg-primary: #080c14;
+  --bg-secondary: #0f172a;
+  --bg-tertiary: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #64748b;
+  --border-color: rgba(51, 65, 85, 0.5);
+  --border-focus: rgba(0, 163, 255, 0.8);
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --card-hover-shadow: 0 20px 40px -15px rgba(0, 163, 255, 0.35);
+  --glass-bg: rgba(15, 23, 42, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-backdrop: blur(20px);
+  --hero-gradient: linear-gradient(135deg, #090f1d 0%, #030712 100%);
+  --hero-pattern-opacity: 0.15;
+}

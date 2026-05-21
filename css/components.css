@@ -1,0 +1,803 @@
+/* Components Styling */
+
+/* ==========================================
+   School Cards Section
+   ========================================== */
+.schools-section {
+  padding: 60px 0 30px;
+}
+
+.schools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.school-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-spring);
+  box-shadow: var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.school-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--ba-blue);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+/* Hover effects with theme colors */
+.school-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.school-card:hover::before {
+  opacity: 1;
+}
+
+.school-card.active {
+  border-color: var(--ba-blue);
+  box-shadow: 0 0 0 2px rgba(0, 163, 255, 0.2), var(--card-hover-shadow);
+}
+
+.school-card.active::before {
+  opacity: 1;
+  background: var(--ba-blue);
+}
+
+/* Custom school colors */
+.school-card[data-school="Abydos"]::before { background: var(--color-abydos); }
+.school-card[data-school="Gehenna"]::before { background: var(--color-gehenna); }
+.school-card[data-school="Trinity"]::before { background: var(--color-trinity); }
+.school-card[data-school="Millennium"]::before { background: var(--color-millennium); }
+.school-card[data-school="Hyakkiyako"]::before { background: var(--color-hyakkiyako); }
+.school-card[data-school="Shanhaijing"]::before { background: var(--color-shanhaijing); }
+.school-card[data-school="RedWinter"]::before { background: var(--color-redwinter); }
+.school-card[data-school="Valkyrie"]::before { background: var(--color-valkyrie); }
+.school-card[data-school="SRT"]::before { background: var(--color-srt); }
+.school-card[data-school="Arius"]::before { background: var(--color-arius); }
+
+.school-card[data-school="Abydos"]:hover { border-color: var(--color-abydos); }
+.school-card[data-school="Gehenna"]:hover { border-color: var(--color-gehenna); }
+.school-card[data-school="Trinity"]:hover { border-color: var(--color-trinity); }
+.school-card[data-school="Millennium"]:hover { border-color: var(--color-millennium); }
+.school-card[data-school="Hyakkiyako"]:hover { border-color: var(--color-hyakkiyako); }
+.school-card[data-school="Shanhaijing"]:hover { border-color: var(--color-shanhaijing); }
+.school-card[data-school="RedWinter"]:hover { border-color: var(--color-redwinter); }
+.school-card[data-school="Valkyrie"]:hover { border-color: var(--color-valkyrie); }
+.school-card[data-school="SRT"]:hover { border-color: var(--color-srt); }
+.school-card[data-school="Arius"]:hover { border-color: var(--color-arius); }
+
+.school-logo-container {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  border-radius: 50%;
+  margin-bottom: 20px;
+  padding: 12px;
+  transition: transform var(--transition-spring), background var(--transition-normal);
+}
+
+.school-card:hover .school-logo-container {
+  transform: scale(1.1);
+}
+
+.school-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.school-name-en {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.school-name-th {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.school-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 60px;
+}
+
+/* ==========================================
+   Filter and Search Panel
+   ========================================== */
+.filter-section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.filter-panel {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.search-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  height: 48px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0 16px 0 46px;
+  font-family: var(--font-primary);
+  font-size: 15px;
+  color: var(--text-primary);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.search-input:focus {
+  border-color: var(--ba-blue);
+  box-shadow: 0 0 0 3px rgba(0, 163, 255, 0.15);
+}
+
+.sort-select-wrapper {
+  position: relative;
+  min-width: 180px;
+}
+
+.sort-select {
+  width: 100%;
+  height: 48px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0 16px;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  transition: all var(--transition-fast);
+}
+
+.sort-select:focus {
+  border-color: var(--ba-blue);
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border-color);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-btn {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  border-color: var(--ba-blue);
+  color: var(--ba-blue);
+}
+
+.filter-btn.active {
+  background: var(--ba-blue);
+  border-color: var(--ba-blue);
+  color: #ffffff;
+  box-shadow: 0 4px 10px var(--ba-blue-glow);
+}
+
+/* Combat type specific tags */
+.filter-btn[data-damage="Explosion"].active { background: var(--color-explosive); border-color: var(--color-explosive); box-shadow: 0 4px 10px rgba(246, 62, 62, 0.4); }
+.filter-btn[data-damage="Pierce"].active { background: var(--color-piercing); border-color: var(--color-piercing); box-shadow: 0 4px 10px rgba(255, 184, 0, 0.4); }
+.filter-btn[data-damage="Mystic"].active { background: var(--color-mystic); border-color: var(--color-mystic); box-shadow: 0 4px 10px rgba(33, 150, 243, 0.4); }
+.filter-btn[data-damage="Sonic"].active { background: var(--color-sonic); border-color: var(--color-sonic); box-shadow: 0 4px 10px rgba(184, 0, 255, 0.4); }
+
+.clear-filter-btn {
+  background: transparent;
+  border: 1px dashed var(--border-color);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ba-orange);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-left: auto;
+  align-self: flex-end;
+}
+
+.clear-filter-btn:hover {
+  background: rgba(255, 126, 0, 0.1);
+  border-color: var(--ba-orange);
+}
+
+/* ==========================================
+   Student Cards Section
+   ========================================== */
+.students-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.student-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--transition-spring);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.student-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--card-hover-shadow);
+  border-color: var(--ba-blue);
+}
+
+.student-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--bg-tertiary);
+  overflow: hidden;
+}
+
+.student-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.student-card:hover .student-img {
+  transform: scale(1.05);
+}
+
+.student-rarity {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 2px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px 6px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+.rarity-star {
+  color: var(--color-star);
+  font-size: 11px;
+}
+
+.student-role-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  backdrop-filter: blur(4px);
+}
+
+.student-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.student-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.student-school-club {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.student-school-club span {
+  display: inline-block;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bullet-separator {
+  color: var(--text-tertiary);
+}
+
+.student-combat-types {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.type-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-grow: 1;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Combat-type colors */
+.type-badge.Explosion { background-color: var(--color-explosive); }
+.type-badge.Pierce { background-color: var(--color-piercing); }
+.type-badge.Mystic { background-color: var(--color-mystic); }
+.type-badge.Sonic { background-color: var(--color-sonic); }
+.type-badge.Normal { background-color: var(--color-normal); }
+
+.type-badge.LightArmor { background-color: var(--color-light); }
+.type-badge.HeavyArmor { background-color: var(--color-heavy); }
+.type-badge.SpecialArmor { background-color: var(--color-special); }
+.type-badge.ElasticArmor { background-color: var(--color-elastic); }
+
+/* No Results State */
+.no-results {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  background: var(--bg-secondary);
+  border: 1px dashed var(--border-color);
+  border-radius: 16px;
+  color: var(--text-secondary);
+}
+
+.no-results-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: var(--text-tertiary);
+}
+
+.no-results-text {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ==========================================
+   Detail Modal System
+   ========================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(8, 12, 20, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-container {
+  width: 90%;
+  max-width: 950px;
+  max-height: 85vh;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.95) translateY(20px);
+  transition: transform var(--transition-normal);
+}
+
+.modal-overlay.open .modal-container {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  border-color: var(--ba-orange);
+  color: var(--ba-orange);
+  transform: rotate(90deg);
+}
+
+.modal-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1.9fr;
+}
+
+/* Modal Left: Portrait & Halo */
+.modal-portrait-side {
+  background: radial-gradient(circle at center, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 40px 20px;
+  min-height: 400px;
+  border-right: 1px solid var(--border-color);
+}
+
+.modal-halo-bg {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border: 2px dashed var(--ba-blue);
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0.2;
+  animation: spin-slow 25s linear infinite;
+  box-shadow: inset 0 0 20px var(--ba-blue);
+}
+
+.modal-portrait {
+  max-width: 100%;
+  max-height: 450px;
+  object-fit: contain;
+  z-index: 2;
+  position: relative;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.3));
+}
+
+/* Modal Right: Profile Data */
+.modal-profile-side {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header-info {
+  margin-bottom: 24px;
+}
+
+.modal-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.modal-student-name {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.modal-student-roman {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.modal-school-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.modal-school-badge img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* Modal Tabs */
+.modal-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 24px;
+}
+
+.modal-tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 8px 16px;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.modal-tab-btn:hover {
+  color: var(--ba-blue);
+}
+
+.modal-tab-btn.active {
+  color: var(--ba-blue);
+  border-bottom-color: var(--ba-blue);
+}
+
+.modal-tab-content {
+  display: none;
+}
+
+.modal-tab-content.active {
+  display: block;
+}
+
+/* Profile Grid details */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px;
+  margin-bottom: 24px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  letter-spacing: 0.5px;
+}
+
+.detail-val {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Bio Text */
+.bio-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.bio-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+/* Combat Stats inside Modal */
+.combat-stats-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.combat-pill-row {
+  display: flex;
+  gap: 12px;
+}
+
+.combat-pill-item {
+  flex-grow: 1;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+/* Weapon specifications */
+.weapon-info-box {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.weapon-icon-container {
+  width: 48px;
+  height: 48px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--ba-blue);
+  border: 1px solid var(--border-color);
+}
+
+.weapon-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.weapon-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.weapon-type-code {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* ==========================================
+   Responsive Modals and Grids
+   ========================================== */
+@media (max-width: 768px) {
+  .modal-layout {
+    grid-template-columns: 1fr;
+  }
+  .modal-portrait-side {
+    min-height: 300px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .modal-profile-side {
+    padding: 24px;
+  }
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .search-row {
+    flex-direction: column;
+  }
+  .sort-select-wrapper {
+    min-width: 100%;
+  }
+  .clear-filter-btn {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 12px;
+  }
+}

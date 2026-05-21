@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Tags -->
+  <title>Kivotos Student Registry | ระบบทำเนียบประวัตินักเรียน Blue Archive</title>
+  <meta name="description" content="เข้าถึงข้อมูลทำเนียบโรงเรียน ชมรม และสถิตินักเรียนทั้งหมดในเกม Blue Archive พร้อมภาพประกอบและเสียงพากย์ของแท้ แยกตามประเภทการโจมตีและการป้องกัน">
+  <meta name="keywords" content="Blue Archive, คิโวทอส, Kivotos, ข้อมูลนักเรียน, อาบิดอส, เกเฮนนา, ทรินิตี้, มิลเลนเนียม">
+  <meta name="author" content="Schale Student Council Office">
+  <meta property="og:title" content="Kivotos Student Registry | ระบบทำเนียบประวัตินักเรียน Blue Archive">
+  <meta property="og:description" content="ระบบทำเนียบประวัตินักเรียนและข้อมูลสถาบันการศึกษาทั้งหมดในคิโวทอส ข้อมูลทางการของแท้">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://schaledb.com/images/student/icon/10000.webp">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Floating Header -->
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo-area" id="headerLogo">
+        <div class="logo-symbol"></div>
+        <div class="logo-text">KIVOTOS <span>DATABASE</span></div>
+        <div class="logo-tag">Schale</div>
+      </a>
+      
+      <div class="header-actions">
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Theme">
+          <!-- Icon injected dynamically by ui.js -->
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content animate-slide-up">
+        <span class="hero-tagline">Schale Administration System</span>
+        <h1 class="hero-title">ระบบทะเบียนประวัติ<br>โรงเรียนและ<span>นักเรียนแห่งคิโวทอส</span></h1>
+        <p class="hero-desc">ยินดีต้อนรับอาจารย์ทุกท่านเข้าสู่ระบบข้อมูลกลางสำหรับประวัติโรงเรียน ชมรม และทำเนียบนักเรียนอย่างเป็นทางการ ค้นหาแฟ้มข้อมูลทักษะยุทโธปกรณ์ สถิติ ส่วนสูง วันเกิด และรายละเอียดเชิงลึกของนักเรียน</p>
+        
+        <!-- Live counters loaded dynamically -->
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value" id="statSchools">-</div>
+            <div class="stat-label">สถาบัน/โรงเรียน</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="statStudents">-</div>
+            <div class="stat-label">นักเรียนลงทะเบียน</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="statClubs">-</div>
+            <div class="stat-label">ชมรมทั้งหมด</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <main class="container">
+
+    <!-- Section 1: School Filters Grid -->
+    <section class="schools-section animate-slide-up" style="animation-delay: 0.1s;">
+      <h2 class="section-title">สถาบันการศึกษาในคิโวทอส</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 14px; max-width: 600px;">เลือกการกรองเฉพาะรายสถาบันเพื่อเรียกดูภาพรวมของโรงเรียนและผลงานข้อมูลนักเรียนที่ลงทะเบียนเรียนในแต่ละสังกัดโรงเรียน</p>
+      
+      <div class="schools-grid" id="schoolsGrid">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- Section 2: Student Panel with Filter Inputs -->
+    <section class="filter-section animate-slide-up" style="animation-delay: 0.2s;" id="studentsSection">
+      <h2 class="section-title">ทำเนียบรายชื่อนักเรียน</h2>
+      
+      <!-- Filter controls box -->
+      <div class="filter-panel">
+        <!-- Text search and Sorting -->
+        <div class="search-row">
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="ค้นหาด้วยชื่อนักเรียน, ชมรม หรือผู้พากย์เสียง..." aria-label="ค้นหาด้วยชื่อนักเรียน, ชมรม หรือผู้พากย์เสียง...">
+          </div>
+          
+          <div class="sort-select-wrapper">
+            <select class="sort-select" id="sortSelect" aria-label="เรียงลำดับข้อมูล">
+              <option value="default">เรียงตาม: ลำดับในเกม</option>
+              <option value="name_asc">เรียงตาม: ชื่อ (A - Z)</option>
+              <option value="name_desc">เรียงตาม: ชื่อ (Z - A)</option>
+              <option value="rarity_desc">เรียงตาม: ความหายาก (สูงสุด - ต่ำสุด)</option>
+              <option value="rarity_asc">เรียงตาม: ความหายาก (ต่ำสุด - สูงสุด)</option>
+              <option value="height_desc">เรียงตาม: ส่วนสูง (สูง - ต่ำ)</option>
+              <option value="height_asc">เรียงตาม: ส่วนสูง (ต่ำ - สูง)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dynamic tag filters row -->
+        <div class="filter-row">
+          <!-- Role Filters -->
+          <div class="filter-group">
+            <span class="filter-label">ประเภทตำแหน่งสนาม (Role)</span>
+            <div class="filter-options">
+              <button class="filter-btn active" data-role="All">ทั้งหมด</button>
+              <button class="filter-btn" data-role="Main">STRIKER (แนวหน้า)</button>
+              <button class="filter-btn" data-role="Support">SPECIAL (สนับสนุน)</button>
+            </div>
+          </div>
+
+          <!-- Combat Damage Filters -->
+          <div class="filter-group">
+            <span class="filter-label">ประเภทพลังโจมตี (ATK Type)</span>
+            <div class="filter-options">
+              <button class="filter-btn active" data-damage="All">ทั้งหมด</button>
+              <button class="filter-btn" data-damage="Explosion">ระเบิด (Explosive)</button>
+              <button class="filter-btn" data-damage="Pierce">เจาะเกราะ (Piercing)</button>
+              <button class="filter-btn" data-damage="Mystic">ลึกลับ (Mystic)</button>
+              <button class="filter-btn" data-damage="Sonic">โซนิก (Sonic)</button>
+            </div>
+          </div>
+
+          <!-- Rarity Star Filters -->
+          <div class="filter-group">
+            <span class="filter-label">ระดับความหายากเริ่มต้น</span>
+            <div class="filter-options">
+              <button class="filter-btn active" data-rarity="All">ทั้งหมด</button>
+              <button class="filter-btn" data-rarity="1">★</button>
+              <button class="filter-btn" data-rarity="2">★★</button>
+              <button class="filter-btn" data-rarity="3">★★★</button>
+            </div>
+          </div>
+
+          <!-- Clear Filters -->
+          <button class="clear-filter-btn" id="clearFilters">🧹 ล้างตัวกรองทั้งหมด</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Student Cards Grid -->
+    <section class="students-section">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3 style="font-size: 18px; font-weight: 700; color: var(--text-primary);" id="filteredSchoolTitle">นักเรียนทั้งหมด (All Students)</h3>
+        <span style="font-size: 13px; color: var(--text-secondary); background: var(--bg-tertiary); padding: 4px 10px; border-radius: 20px; font-weight: 600;" id="studentCountBadge">- คน</span>
+      </div>
+
+      <!-- Student items grid container -->
+      <div class="students-grid" id="studentsGrid">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Student Profile Detail Overlay Modal -->
+  <div class="modal-overlay" id="studentModal">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modalClose" aria-label="Close details">✕</button>
+      
+      <div class="modal-layout">
+        <!-- Left Side: Portrait picture -->
+        <div class="modal-portrait-side">
+          <div class="modal-halo-bg"></div>
+          <img class="modal-portrait" id="modalPortrait" src="" alt="">
+        </div>
+
+        <!-- Right Side: Details and tabs sheets -->
+        <div class="modal-profile-side">
+          <div class="modal-header-info">
+            <div class="modal-title-row">
+              <h2 class="modal-student-name" id="modalName">-</h2>
+              <span class="modal-school-badge" id="modalSchoolBadge">
+                <!-- Injected dynamically -->
+              </span>
+            </div>
+            <div class="modal-student-roman" id="modalRoman">-</div>
+          </div>
+
+          <!-- Profile Nav tabs -->
+          <div class="modal-tabs">
+            <button class="modal-tab-btn active" data-tab="profile">ข้อมูลประวัติทั่วไป</button>
+            <button class="modal-tab-btn" data-tab="combat">สถิติการรบยุทโธปกรณ์</button>
+          </div>
+
+          <!-- Tab Content 1: Profile Info -->
+          <div class="modal-tab-content active" id="tab-profile">
+            <div class="details-grid">
+              <div class="detail-item">
+                <span class="detail-label">อายุ (Age)</span>
+                <span class="detail-val" id="detailAge">-</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">วันเกิด (Birthday)</span>
+                <span class="detail-val" id="detailBirthday">-</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">ส่วนสูง (Height)</span>
+                <span class="detail-val" id="detailHeight">-</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">ชมรมในสังกัด (Club)</span>
+                <span class="detail-val" id="detailClub">-</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">นักแสดงพากย์เสียง (CV)</span>
+                <span class="detail-val" id="detailVoice">-</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">ผู้วาดภาพประกอบ (Illustrator)</span>
+                <span class="detail-val" id="detailIllustrator">-</span>
+              </div>
+              <div class="detail-item" style="grid-column: span 2;">
+                <span class="detail-label">งานอดิเรก (Hobby)</span>
+                <span class="detail-val" id="detailHobby">-</span>
+              </div>
+            </div>
+
+            <div class="bio-section" style="border-top: 1px dashed var(--border-color); padding-top: 16px;">
+              <h4 class="bio-title">ประวัติความเป็นมา</h4>
+              <p class="bio-text" id="detailIntro">-</p>
+            </div>
+          </div>
+
+          <!-- Tab Content 2: Combat and weapons specs -->
+          <div class="modal-tab-content" id="tab-combat">
+            <div class="combat-stats-layout">
+              <div class="details-grid">
+                <div class="detail-item">
+                  <span class="detail-label">ตำแหน่งกองกำลัง (Squad Role)</span>
+                  <span class="detail-val" id="detailRole">-</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">ตำแหน่งการยืนในสนาม (Position)</span>
+                  <span class="detail-val" id="detailPosition">-</span>
+                </div>
+              </div>
+
+              <div class="combat-pill-row">
+                <div id="detailDmgType" class="combat-pill-item">
+                  <!-- Type dynamic class added -->
+                </div>
+                <div id="detailArmorType" class="combat-pill-item">
+                  <!-- Type dynamic class added -->
+                </div>
+              </div>
+
+              <!-- Weapon spec block -->
+              <div class="weapon-info-box" id="modalWeaponBox" style="margin-top: 16px;">
+                <div class="weapon-icon-container">🔫</div>
+                <div class="weapon-meta">
+                  <div class="weapon-label" style="font-size: 11px; font-weight:700; color:var(--text-tertiary);">อาวุธประจำตัว (Exclusive Weapon)</div>
+                  <div class="weapon-name" id="weaponName">-</div>
+                  <div class="weapon-type-code" id="weaponTypeCode">-</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer block -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Kivotos Academy Administration Office. All Rights Reserved.</p>
+      <p>ข้อมูลจัดทำขึ้นเพื่อการอ้างอิงของเกมสำรองเท่านั้น ลิขสิทธิ์ตัวละครและภาพประกอบเป็นของ Nexen Games / Yostar / NAT Games</p>
+      <div class="footer-credits">
+        ข้อมูลจากสถิติแบบเรียลไทม์ผ่าน <a href="https://schaledb.com" target="_blank" rel="noopener noreferrer">SchaleDB</a> API
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts Loading -->
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
